@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(cwru_msg)
+project(cwru_msgs)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -7,7 +7,6 @@ project(cwru_msg)
 find_package(catkin REQUIRED COMPONENTS
   #message_generation
   geometry_msgs
-  #nav_msgs
   roscpp
   std_msgs
   genmsg
@@ -48,7 +47,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate messages in the 'msg' folder
 add_message_files(DIRECTORY msg
-FILES vec_of_doubles.msg
+FILES VecOfDoubles.msg
 #   Message2.msg
 )
 
@@ -109,16 +108,15 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-add_executable(cwru_msg_trivial_node src/cwru_msg_trivial_node.cpp)
-
+add_executable(cwru_msg_trivial_publisher src/cwru_msg_trivial_publisher.cpp)
+add_executable(cwru_msg_trivial_subscriber src/cwru_msg_trivial_subscriber.cpp)
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-add_dependencies(cwru_msg_trivial_node cwru_msg_generate_messages_cpp)
-
+add_dependencies(cwru_msg_trivial_publisher cwru_msg_generate_messages_cpp)
+add_dependencies(cwru_msg_trivial_subscriber cwru_msg_generate_messages_cpp)
 ## Specify libraries to link a library or executable target against
-target_link_libraries(cwru_msg_trivial_node
-  ${catkin_LIBRARIES} )
-
+target_link_libraries(cwru_msg_trivial_publisher  ${catkin_LIBRARIES} )
+target_link_libraries(cwru_msg_trivial_subscriber  ${catkin_LIBRARIES} )
 #############
 ## Install ##
 #############
